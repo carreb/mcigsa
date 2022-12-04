@@ -65,7 +65,6 @@ export default {
 
 html {
   overflow-y: scroll;
-  overflow-x: hidden;
   scrollbar-gutter: stable;
   width: 100%;
 }
@@ -192,8 +191,10 @@ body {
   margin-top: auto;
   bottom: 0;
   height: 25px;
-  width: 100%;
-  padding: 15px;
+  max-width: 100%;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background-color: #f3f3f3;
 }
 .footer > p {
