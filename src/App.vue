@@ -26,7 +26,7 @@
           <li>To raise awareness about the community</li>
         </ul>
       </div>
-    <div class="whyjoin">
+    <div class="moreinfo">
       <h1>More Info</h1>
       <ul>
         <li>We hold meetings in Room 236 every Wednesday</li>
@@ -35,6 +35,12 @@
       </ul>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <footer class="footer">
+    <p><a href="https://github.com/carreb/mcigsa">made with ❤️🧡💛💚💙💜</a></p>
+  </footer>
 </template>
 
 <script>
@@ -57,10 +63,6 @@ export default {
   font-family: "Inter", sans-serif;
 }
 
-body {
-  height: 1000vh;
-}
-
 html {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -68,6 +70,11 @@ html {
   width: 100%;
 }
 
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
 
 .about {
   position: relative;
@@ -123,7 +130,7 @@ html {
 
 .ourgoals {
   position: relative;
-  top: 240px;
+  top: 180px;
   left: 0;
   right: 0;
   margin: auto;
@@ -148,6 +155,59 @@ html {
   color: gray;
   padding-bottom: 5px;
   margin: 0;
+}
+
+.moreinfo {
+  position: relative;
+  top: 120px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 1000px;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.moreinfo>h1 {
+  font-size: 95px;
+  font-weight: 800;
+}
+
+.moreinfo>ul {
+  list-style-type: none;
+  position: relative;
+  top: -50px;
+}
+
+.moreinfo>ul>li {
+  text-align: center !important;
+  font-size: 40px;
+  color: gray;
+  padding-bottom: 5px;
+  margin: 0;
+}
+
+
+.footer {
+  margin-top: auto;
+  bottom: 0;
+  height: 25px;
+  width: 100%;
+  padding: 15px;
+  background-color: #f3f3f3;
+}
+.footer > p {
+  font-size: 12px;
+}
+
+a {
+  color: rgb(41, 190, 240);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(41, 190, 240);
 }
 
 .fadein-aftertitle {
