@@ -2,16 +2,16 @@
     <div class="wrapper">
         <div class="navbar">
             <div class="navItem">
-                <h3>Upcoming Events</h3>
+                <h3 @click="this.$emit('events')">Upcoming Events</h3>
             </div>
             <div class="navItem">
-                <h3>Our Shop</h3>
+                <h3 @click="this.$emit('shop')">Our Shop</h3>
             </div>
             <div class="navItem">
-                <h3>Top Picks</h3>
+                <h3 @click="this.$emit('picks')">Top Picks</h3>
             </div>
             <div class="navItem">
-                <h3>Resources</h3>
+                <h3 @click="this.$emit('resources')">Resources</h3>
             </div>
         </div>
     </div>
@@ -19,7 +19,8 @@
 
 <script>
     export default {
-        name: "GSANavbar"
+        name: "GSANavbar",
+        emits: ["events", "shop", "picks", "resources"]
     }
 </script>
 
