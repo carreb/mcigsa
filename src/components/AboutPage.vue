@@ -1,6 +1,6 @@
 <template>
     <GSAHeaderVue></GSAHeaderVue>
-    <div class="fadein-aftertitle">
+    <div :class="{ quickfadein: animationRan, 'fadein-aftertitle': !animationRan }" @animationend="this.$emit('initialAnimationFinished')">
         <GSANavbarVue @events="toggleEventModal" @shop="toggleShopModal" @picks="togglePicksModal" @resources="toggleResourcesModal"></GSANavbarVue>
         <div class="about">
             <h1>Who Are We?</h1>
@@ -58,10 +58,14 @@ export default {
         GSAHeaderVue,
         GSANavbarVue,
     },
+    emits: ['initialAnimationFinished'],
     data() {
         return {
-            eventModalOpen: false
+            eventModalOpen: false,
         }
+    },
+    props: {
+        animationRan: Boolean
     },
     methods: {
         toggleEventModal() {
@@ -224,7 +228,7 @@ body {
     margin-top: auto;
     bottom: 0;
     height: 25px;
-    max-width: 100%;
+    min-width: device-width;
     padding-left: 15px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -262,5 +266,12 @@ a:visited {
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+.quickfadein {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadein ease-out 500ms forwards;
+    animation-delay: 0ms !important;
 }
 </style>

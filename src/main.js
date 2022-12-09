@@ -20,7 +20,7 @@ library.add(faUserSecret, faInstagram, faChalkboardUser)
 
 const routes = [
     { path: '/events', component: UpcomingEventsModal },
-    { path: '/', component: Homepage},
+    { path: '/', component: Homepage, props: true},
     { path: '/shop', component: ShopModal },
     { path: '/picks', component: PicksModal },
     { path: '/resources', component: ResourcesModal }
