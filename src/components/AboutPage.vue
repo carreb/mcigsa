@@ -1,7 +1,7 @@
 <template>
     <GSAHeaderVue></GSAHeaderVue>
     <div :class="{ quickfadein: animationRan, 'fadein-aftertitle': !animationRan }" @animationend="this.$emit('initialAnimationFinished')">
-        <GSANavbarVue @events="toggleEventModal" @shop="toggleShopModal" @picks="togglePicksModal" @resources="toggleResourcesModal"></GSANavbarVue>
+        <GSANavbarVue @events="toggleEventModal" @shop="toggleShopModal" @picks="togglePicksModal" @resources="toggleResourcesModal" @q&a="toggleQuestionsModal"></GSANavbarVue>
         <div class="about">
             <h1>Who Are We?</h1>
             <p>GSA stands for gay straight alliance or gender sexuality alliance. No matter which description you use,
@@ -80,6 +80,9 @@ export default {
         toggleResourcesModal() {
             this.$router.push('/resources')
         },
+        toggleQuestionsModal() {
+            this.$router.push('/forum')
+        }
     }
 }
 </script>

@@ -13,6 +13,9 @@
             <div class="navItem">
                 <h3 @click="this.$emit('resources')">Resources</h3>
             </div>
+            <div class="navItem">
+                <h3 @click="this.$emit('q&a')">Q&A</h3>
+            </div>
         </div>
     </div>
 </template>
@@ -20,7 +23,7 @@
 <script>
     export default {
         name: "GSANavbar",
-        emits: ["events", "shop", "picks", "resources"]
+        emits: ["events", "shop", "picks", "resources", "q&a"]
     }
 </script>
 
