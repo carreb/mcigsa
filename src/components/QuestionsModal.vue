@@ -4,7 +4,8 @@
             <p class="goback" @click="closeAnimation" @click.right="signIn($event)" ref="goback">←</p>
             <div class="title">
                 <h1>Questions & Answers</h1>
-                <h3 class="button">ASK A QUESTION</h3>
+                <h3 class="button" v-if="this.$route.fullPath != '/forum/ask'" @click="this.$router.push('/forum/ask')">ASK A QUESTION</h3>
+                <h3 class="button" v-else @click="this.$router.push('/forum')">GO BACK</h3>
                 <br>
             </div>
             <div class="routerview">

@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import FloatingVue from "floating-vue"
 import "floating-vue/dist/style.css";
@@ -22,6 +22,7 @@ import ShopModal from "./components/ShopModal"
 import QuestionsModal from "./components/QuestionsModal"
 import AllQuestionsView from "./components/AllQuestionsView"
 import SpecificQuestionView from "./components/SpecificQuestionView"
+import AskQuestionView from './components/AskQuestion'
 
 library.add(faUserSecret, faInstagram, faChalkboardUser)
 
@@ -31,11 +32,11 @@ const routes = [
     { path: '/shop', component: ShopModal },
     { path: '/picks', component: PicksModal },
     { path: '/resources', component: ResourcesModal },
-    { path: '/forum', component: QuestionsModal, children: [{ path: '', component: AllQuestionsView, props: true }, { path: 'question/:id', component: SpecificQuestionView }] }
+    { path: '/forum', component: QuestionsModal, children: [{ path: '', component: AllQuestionsView, props: true }, { path: 'question/:id', component: SpecificQuestionView }, { path: 'ask', component: AskQuestionView }] }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 
