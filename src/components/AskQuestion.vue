@@ -1,10 +1,11 @@
 <template>
     <div class="container">
         <h1>Ask a Question:</h1>
-        <input class="title" type="text" placeholder="What is x y z...">
+        <input class="title" type="text" placeholder="What is x y z..." v-model="postData.title">
         <h1>Question Body</h1>
-        <textarea class="bodytext" maxlength="240" placeholder="I've been wondering about x y z for a while, anyone have any answers?"></textarea>
-        <h2>POST</h2>
+        <textarea class="bodytext" v-model="postData.body" maxlength="240" placeholder="I've been wondering about x y z for a while, anyone have any answers?"></textarea>
+        <h2 ref="postbutton" @click="PostQuestion" :class="{ posting: postInProgress }">POST</h2>
+        <p ref="failtext" v-if="postFailed">There was a problem while trying to post your question... Please try again later</p>
     </div>
 </template>
 
@@ -16,63 +17,38 @@ export default {
     data() {
         return {
             socket: {},
-            post: {},
-            postErrorData: "",
-            postId: "",
-            replyModel: ""
+            postInProgress: false,
+            postFailed: false,
+            postData: {
+                title: "",
+                body: ""
+            }
         }
     },
     created() {
         this.socket = io("http://localhost:1013/forum")
-        this.getPostId()
     },
     mounted() {
-        this.socket.on("gotPost", data => {
-            this.post = data
-            this.replyModel = ""
+        this.socket.on("posted", (data) => {
+            this.$router.push(`/forum/question/${data}`)
         })
-        this.socket.on("errorWhileGettingPost", data => {
-            this.post = "error"
-            this.postErrorData = data
+        this.socket.on("postFailed", () => {
+            this.postFailed = true
+            this.postInProgress = false
         })
     },
     methods: {
-        getPostId() {
-            this.postId = this.$route.params.id
-            this.socket.emit("getPost", this.postId)
-        },
-        submitReply() {
-            if (this.replyModel.length > 0) {
-                this.$refs.submitbutton.style.display = "none"
-                this.socket.emit("postReply", this.replyModel, this.postId)
+        PostQuestion() {
+            if (!this.postInProgress) {
+                this.postInProgress = true
+                if (this.postData.title && this.postData.body != "") {
+                    return this.socket.emit("postQuestion", this.postData)
+                }
+                alert("You can't post a question with an empty title or body.")
             }
+            return this.postInProgress = false
         }
     },
-    computed: {
-        reverseOrder() {
-            return function (arg) {
-                if (arg != undefined) {
-                    return arg.slice().reverse()
-                }
-                return []
-            }
-        },
-        isEmpty() {
-            return function (array) {
-                if (array != undefined) {
-                    return array.length
-                }
-                return 0
-            }
-        },
-        // replies() {
-        //     return function(replies, page) {
-        //         if (replies != undefined) {
-
-        //         }
-        //     }
-        // }
-    }
 }
 </script>
 
@@ -141,5 +117,10 @@ h2 {
 h2:hover {
     background-color: var(--red);
     color: white;
+}
+
+h2.posting {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 </style>
